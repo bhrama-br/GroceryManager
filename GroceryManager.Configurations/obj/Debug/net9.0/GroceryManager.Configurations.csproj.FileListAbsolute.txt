@@ -16,3 +16,5 @@
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Configurations/bin/Debug/net9.0/GroceryManager.Models.dll
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Configurations/bin/Debug/net9.0/GroceryManager.Models.pdb
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Configurations/obj/Debug/net9.0/GroceryManager.Configurations.sourcelink.json
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Configurations/bin/Debug/net9.0/GroceryManager.Auth.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Configurations/bin/Debug/net9.0/GroceryManager.Auth.pdb

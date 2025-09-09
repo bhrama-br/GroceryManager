@@ -10,3 +10,9 @@
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.pdb
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/ref/GroceryManager.Auth.dll
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.sourcelink.json
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/bin/Debug/net9.0/GroceryManager.Database.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/bin/Debug/net9.0/GroceryManager.Database.pdb
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.csproj.AssemblyReference.cache
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryM.79C24F78.Up2Date
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/bin/Debug/net9.0/GroceryManager.Models.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/bin/Debug/net9.0/GroceryManager.Models.pdb
