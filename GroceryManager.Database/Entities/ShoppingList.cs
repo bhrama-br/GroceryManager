@@ -10,6 +10,6 @@ namespace GroceryManager.Database.Entities
         public int Id { get; set; }
         public bool IsPurchased { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public List<Item> Items { get; set; } = new List<Item>();
+        public List<Item>? Items { get; set; }
     }
 }

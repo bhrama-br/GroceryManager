@@ -1,5 +1,6 @@
 global using GroceryManager.Models;
 global using GroceryManager.Services.ShoppingListService;
+global using GroceryManager.Services.ItemService;
 using GroceryManager.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddGroceryConfigurations(builder.Configuration);
 
 builder.Services.AddScoped<IShoppingListService, ShoppingListService>();
+builder.Services.AddScoped<IItemService, ItemService>();
 
 var app = builder.Build();
 

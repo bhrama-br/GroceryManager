@@ -8,12 +8,12 @@ namespace GroceryManager.Models.Dtos.Item
     public class GetItemDto
     {
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Supermarket { get; set; } = string.Empty;
+        public string Name { get; set; }
+        public string Supermarket { get; set; }
         public int Quantity { get; set; }
-        public List<string> Names { get; set; } = new List<string>();
-        public string Notes { get; set; } = string.Empty;
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public bool IsPurchased { get; set; } = false;
+        public List<string>? Names { get; set; }
+        public string Notes { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool IsPurchased { get; set; }
     }
 }

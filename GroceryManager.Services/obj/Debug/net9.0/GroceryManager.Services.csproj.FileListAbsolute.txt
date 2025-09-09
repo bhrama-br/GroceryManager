@@ -15,3 +15,4 @@
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Services/obj/Debug/net9.0/refint/GroceryManager.Services.dll
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Services/obj/Debug/net9.0/GroceryManager.Services.pdb
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Services/obj/Debug/net9.0/ref/GroceryManager.Services.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Services/obj/Debug/net9.0/GroceryManager.Services.sourcelink.json

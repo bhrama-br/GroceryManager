@@ -12,6 +12,7 @@ namespace GroceryManager.Configurations
         {
             // Item
             CreateMap<Item, GetItemDto>().ReverseMap();
+            CreateMap<AddItemDto, Item>();
 
             // ShoppingList
             CreateMap<ShoppingList, GetShoppingListDto>().ReverseMap();

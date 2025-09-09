@@ -62,7 +62,7 @@ namespace GroceryManager.Database.Migrations.Migrations
 
                     b.HasIndex("ShoppingListId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("GroceryManager.Database.Entities.ShoppingList", b =>

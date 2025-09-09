@@ -12,3 +12,4 @@
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.pdb
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.genruntimeconfig.cache
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/ref/GroceryManager.Database.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.sourcelink.json

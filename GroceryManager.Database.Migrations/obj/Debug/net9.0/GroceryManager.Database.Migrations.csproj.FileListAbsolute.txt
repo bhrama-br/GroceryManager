@@ -15,3 +15,4 @@
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database.Migrations/obj/Debug/net9.0/GroceryManager.Database.Migrations.pdb
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database.Migrations/obj/Debug/net9.0/GroceryManager.Database.Migrations.genruntimeconfig.cache
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database.Migrations/obj/Debug/net9.0/ref/GroceryManager.Database.Migrations.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database.Migrations/obj/Debug/net9.0/GroceryManager.Database.Migrations.sourcelink.json

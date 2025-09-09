@@ -9,3 +9,4 @@
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/refint/GroceryManager.Auth.dll
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.pdb
 /Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/ref/GroceryManager.Auth.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.sourcelink.json
