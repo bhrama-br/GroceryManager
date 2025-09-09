@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace GroceryManager.Configurations
 {
@@ -9,12 +10,18 @@ namespace GroceryManager.Configurations
     {
       services.AddSwaggerGen(c =>
       {
-        c.SwaggerDoc("v1", new OpenApiInfo
+        c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
         {
-          Title = "Grocery Manager API",
-          Version = "v1"
+          Description = """Standard Authorization header using the Bearer scheme. Example: "bearer {token}" """,
+          In = ParameterLocation.Header,
+          Name = "Authorization",
+          Type = SecuritySchemeType.ApiKey
         });
+
+        c.OperationFilter<SecurityRequirementsOperationFilter>();
       });
+      services.AddHttpContextAccessor();
+
 
       return services;
     }

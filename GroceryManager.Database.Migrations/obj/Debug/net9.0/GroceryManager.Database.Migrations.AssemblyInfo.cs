@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GroceryManager.Database.Migrations")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e1176287fe4b21c134e06ab13042f5be515cbba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4dc264afc0635f371305825ab090465f9c58434c")]
 [assembly: System.Reflection.AssemblyProductAttribute("GroceryManager.Database.Migrations")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GroceryManager.Database.Migrations")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

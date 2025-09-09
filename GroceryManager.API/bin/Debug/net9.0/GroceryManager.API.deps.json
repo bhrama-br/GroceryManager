@@ -1159,7 +1159,8 @@
           "GroceryManager.Database": "1.0.0",
           "GroceryManager.Models": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.9",
-          "Swashbuckle.AspNetCore": "9.0.4"
+          "Swashbuckle.AspNetCore": "9.0.4",
+          "Swashbuckle.AspNetCore.Filters": "9.0.0"
         },
         "runtime": {
           "GroceryManager.Configurations.dll": {
