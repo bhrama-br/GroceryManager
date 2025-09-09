@@ -1,0 +1,14 @@
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/bin/Debug/net9.0/GroceryManager.Database.deps.json
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/bin/Debug/net9.0/GroceryManager.Database.runtimeconfig.json
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/bin/Debug/net9.0/GroceryManager.Database.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/bin/Debug/net9.0/GroceryManager.Database.pdb
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.csproj.AssemblyReference.cache
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.AssemblyInfoInputs.cache
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.AssemblyInfo.cs
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.csproj.CoreCompileInputs.cache
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/refint/GroceryManager.Database.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.pdb
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/GroceryManager.Database.genruntimeconfig.cache
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/obj/Debug/net9.0/ref/GroceryManager.Database.dll

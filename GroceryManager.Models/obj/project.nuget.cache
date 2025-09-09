@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZSNtIe2hufc=",
+  "success": true,
+  "projectFilePath": "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Models/GroceryManager.Models.csproj",
+  "expectedPackageFiles": [
+    "/Users/bramante/.nuget/packages/fluentvalidation/8.2.3/fluentvalidation.8.2.3.nupkg.sha512",
+    "/Users/bramante/.nuget/packages/system.componentmodel.annotations/4.4.1/system.componentmodel.annotations.4.4.1.nupkg.sha512"
+  ],
+  "logs": []
+}

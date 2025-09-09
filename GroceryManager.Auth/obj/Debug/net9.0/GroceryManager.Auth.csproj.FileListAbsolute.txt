@@ -1,0 +1,11 @@
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/bin/Debug/net9.0/GroceryManager.Auth.deps.json
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/bin/Debug/net9.0/GroceryManager.Auth.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/bin/Debug/net9.0/GroceryManager.Auth.pdb
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.AssemblyInfoInputs.cache
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.AssemblyInfo.cs
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.csproj.CoreCompileInputs.cache
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/refint/GroceryManager.Auth.dll
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/GroceryManager.Auth.pdb
+/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/obj/Debug/net9.0/ref/GroceryManager.Auth.dll
