@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../GroceryManager.Auth/GroceryManager.Auth.csproj" />
+    <ProjectReference Include="../GroceryManager.Configurations/GroceryManager.Configurations.csproj" />
     <ProjectReference Include="../GroceryManager.Models/GroceryManager.Models.csproj" />
     <ProjectReference Include="..\GroceryManager.Database\GroceryManager.Database.csproj" />
   </ItemGroup>

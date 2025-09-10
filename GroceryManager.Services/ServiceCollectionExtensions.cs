@@ -2,14 +2,14 @@ using GroceryManager.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using GroceryManager.Auth.Services;
 using System.Text;
 using GroceryManager.Auth.Models;
+using GroceryManager.Configurations;
 
-namespace GroceryManager.Configurations
+namespace GroceryManager.Services
 {
   public static class ServiceCollectionExtensions
   {

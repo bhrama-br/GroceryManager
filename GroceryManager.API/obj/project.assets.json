@@ -1876,6 +1876,8 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "AutoMapper": "12.0.1",
+          "GroceryManager.Auth": "1.0.0",
+          "GroceryManager.Configurations": "1.0.0",
           "GroceryManager.Database": "1.0.0",
           "GroceryManager.Models": "1.0.0"
         },

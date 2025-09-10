@@ -530,6 +530,12 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+              "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/GroceryManager.Auth.csproj": {
+                "projectPath": "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Auth/GroceryManager.Auth.csproj"
+              },
+              "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Configurations/GroceryManager.Configurations.csproj": {
+                "projectPath": "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Configurations/GroceryManager.Configurations.csproj"
+              },
               "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/GroceryManager.Database.csproj": {
                 "projectPath": "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/GroceryManager.Database.csproj"
               },

@@ -1,11 +1,11 @@
 global using GroceryManager.Models;
 global using GroceryManager.Services.ShoppingListService;
 global using GroceryManager.Services.ItemService;
-using GroceryManager.Configurations;
+using GroceryManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Usa a extensão centralizada no projeto Configurations
+// Add configurations to project
 builder.Services.AddGroceryConfigurations(builder.Configuration);
 
 builder.Services.AddScoped<IShoppingListService, ShoppingListService>();
