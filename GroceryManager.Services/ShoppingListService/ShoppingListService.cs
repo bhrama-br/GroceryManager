@@ -5,12 +5,22 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GroceryManager.Database;
 using GroceryManager.Database.Entities;
-using GroceryManager.Models;
 using GroceryManager.Models.Dtos.ShoppingList;
 using Microsoft.EntityFrameworkCore;
 
 namespace GroceryManager.Services.ShoppingListService
 {
+    public interface IShoppingListService
+    {
+        Task<List<GetShoppingListDto>> GetShoppingLists(CancellationToken cancellationToken);
+
+        Task<List<GetShoppingListDto>> AddShoppingList(AddShoppingListDto newShoppingList, CancellationToken cancellationToken);
+
+        Task<GetShoppingListDto> GetShoppingList(int id, CancellationToken cancellationToken);
+
+        Task<GetShoppingListDto?> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList, CancellationToken cancellationToken);
+    }
+
     public class ShoppingListService : IShoppingListService
     {
         private readonly DataContext _context;

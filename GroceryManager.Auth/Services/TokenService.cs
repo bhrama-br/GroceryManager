@@ -12,6 +12,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GroceryManager.Auth.Services
 {
+    public interface ITokenService
+    {
+        Task<string> Register(User user, string password);
+        Task<string> Login(string username, string password);
+        Task<bool> UserExists(string username);
+    }
+
     public class TokenService : ITokenService
     {
         private readonly JwtSettings _jwtSettings;

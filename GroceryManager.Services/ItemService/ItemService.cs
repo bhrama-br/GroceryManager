@@ -5,12 +5,20 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GroceryManager.Database;
 using GroceryManager.Database.Entities;
-using GroceryManager.Models;
 using GroceryManager.Models.Dtos.Item;
 using Microsoft.EntityFrameworkCore;
 
 namespace GroceryManager.Services.ItemService
 {
+    public interface IItemService
+    {
+        Task<List<GetItemDto>> GetItems(CancellationToken cancellationToken);
+        Task<GetItemDto> GetItem(int id, CancellationToken cancellationToken);
+        Task<GetItemDto> AddItem(AddItemDto newItem, CancellationToken cancellationToken);
+        Task<GetItemDto?> UpdateItem(UpdateItemDto updatedItem, CancellationToken cancellationToken);
+        Task<List<GetItemDto>> DeleteItem(int id, CancellationToken cancellationToken);
+    }
+
     public class ItemService : IItemService
     {
         private readonly DataContext _context;
