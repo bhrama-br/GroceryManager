@@ -13,43 +13,41 @@ namespace GroceryManager.API.Controllers
     public class ShoppingListController : ControllerBase
     {
         private readonly IShoppingListService _shoppingListService;
-        private readonly CancellationToken _cancellationToken;
 
-        public ShoppingListController(IShoppingListService shoppingListService, CancellationToken cancellationToken)
+        public ShoppingListController(IShoppingListService shoppingListService)
         {
             _shoppingListService = shoppingListService;
-            _cancellationToken = cancellationToken;
         }
 
         [Authorize]
         [HttpGet]
-        public async Task<List<GetShoppingListDto>> GetShoppingLists()
+        public async Task<List<GetShoppingListDto>> GetShoppingLists(CancellationToken cancellationToken)
         {
-            var result = await _shoppingListService.GetShoppingLists(_cancellationToken);
+            var result = await _shoppingListService.GetShoppingLists(cancellationToken);
             return result;
         }
 
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<GetShoppingListDto> GetShoppingList(int id)
+        public async Task<GetShoppingListDto> GetShoppingList(int id, CancellationToken cancellationToken)
         {
-            var result = await _shoppingListService.GetShoppingList(id, _cancellationToken);
+            var result = await _shoppingListService.GetShoppingList(id, cancellationToken);
             return result;
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<List<GetShoppingListDto>> AddShoppingList(AddShoppingListDto newShoppingList)
+        public async Task<List<GetShoppingListDto>> AddShoppingList(AddShoppingListDto newShoppingList, CancellationToken cancellationToken)
         {
-            var result = await _shoppingListService.AddShoppingList(newShoppingList, _cancellationToken);
+            var result = await _shoppingListService.AddShoppingList(newShoppingList, cancellationToken);
             return result;
         }
 
         [Authorize]
         [HttpPut]
-        public async Task<GetShoppingListDto?> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList)
+        public async Task<GetShoppingListDto?> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList, CancellationToken cancellationToken)
         {
-            var result = await _shoppingListService.UpdateShoppingList(updatedShoppingList, _cancellationToken);
+            var result = await _shoppingListService.UpdateShoppingList(updatedShoppingList, cancellationToken);
             return result;
         }
     }

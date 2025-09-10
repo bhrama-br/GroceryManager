@@ -13,51 +13,49 @@ namespace GroceryManager.API.Controllers
     public class ItemController : ControllerBase
     {
         private readonly IItemService _itemService;
-        private readonly CancellationToken _cancellationToken;
 
-        public ItemController(IItemService itemService, CancellationToken cancellationToken)
+        public ItemController(IItemService itemService)
         {
             _itemService = itemService;
-            _cancellationToken = cancellationToken;
         }
 
         [Authorize]
         [HttpGet("GetAll")]
-        public async Task<List<GetItemDto>> GetItems()
+        public async Task<List<GetItemDto>> GetItems(CancellationToken cancellationToken)
         {
-            var result = await _itemService.GetItems(_cancellationToken);
+            var result = await _itemService.GetItems(cancellationToken);
             return result;
         }
 
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<GetItemDto> GetItem(int id)
+        public async Task<GetItemDto> GetItem(int id, CancellationToken cancellationToken)
         {
-            var result = await _itemService.GetItem(id, _cancellationToken);
+            var result = await _itemService.GetItem(id, cancellationToken);
             return result;
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<GetItemDto> AddItem(AddItemDto newItem)
+        public async Task<GetItemDto> AddItem(AddItemDto newItem, CancellationToken cancellationToken)
         {
-            var result = await _itemService.AddItem(newItem, _cancellationToken);
+            var result = await _itemService.AddItem(newItem, cancellationToken);
             return result;
         }
 
         [Authorize]
         [HttpPut]
-        public async Task<GetItemDto?> UpdateItem(UpdateItemDto updatedItem)
+        public async Task<GetItemDto?> UpdateItem(UpdateItemDto updatedItem, CancellationToken cancellationToken)
         {
-            var result = await _itemService.UpdateItem(updatedItem, _cancellationToken);
+            var result = await _itemService.UpdateItem(updatedItem, cancellationToken);
             return result;
         }
 
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<List<GetItemDto>> DeleteItem(int id)
+        public async Task<List<GetItemDto>> DeleteItem(int id, CancellationToken cancellationToken)
         {
-            var result = await _itemService.DeleteItem(id, _cancellationToken);
+            var result = await _itemService.DeleteItem(id, cancellationToken);
             return result;
         }
     }

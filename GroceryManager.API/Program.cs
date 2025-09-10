@@ -1,7 +1,7 @@
 global using GroceryManager.Models;
 global using GroceryManager.Services.ShoppingListService;
 global using GroceryManager.Services.ItemService;
-using GroceryManager.Services;
+using GroceryManager.Services.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,6 +2,7 @@ using GroceryManager.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using GroceryManager.Auth.Services;
@@ -9,7 +10,7 @@ using System.Text;
 using GroceryManager.Auth.Models;
 using GroceryManager.Configurations;
 
-namespace GroceryManager.Services
+namespace GroceryManager.Services.Extensions
 {
   public static class ServiceCollectionExtensions
   {
@@ -35,7 +36,8 @@ namespace GroceryManager.Services
 
 
       services.AddSwaggerConfiguration();
-      services.AddAutoMapper(typeof(MappingProfile).Assembly);
+      services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 
       // JWT Settings
       services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
