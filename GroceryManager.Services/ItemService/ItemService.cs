@@ -21,126 +21,57 @@ namespace GroceryManager.Services.ItemService
             _context = context;
             _mapper = mapper;
         }
-        public async Task<ServiceResponse<GetItemDto>> AddItem(AddItemDto newItem)
+        public async Task<GetItemDto> AddItem(AddItemDto newItem)
         {
-            var serviceResponse = new ServiceResponse<GetItemDto>();
-            try
-            {
-                var shoppingList = await _context.ShoppingLists
-                    .FirstOrDefaultAsync(sl => sl.Id == newItem.ShoppingListId);
-                if (shoppingList is null)
-                    throw new Exception("Shopping list not found.");
+            var shoppingList = await _context.ShoppingLists
+                .FirstOrDefaultAsync(sl => sl.Id == newItem.ShoppingListId);
+            if (shoppingList is null)
+                throw new Exception("Shopping list not found.");
 
-                var item = _mapper.Map<Item>(newItem);
-                item.ShoppingList = shoppingList;
+            var item = _mapper.Map<Item>(newItem);
+            item.ShoppingList = shoppingList;
 
-                _context.Items.Add(item);
-                await _context.SaveChangesAsync();
+            _context.Items.Add(item);
+            await _context.SaveChangesAsync();
 
-                serviceResponse.Data = _mapper.Map<GetItemDto>(item);
-                serviceResponse.Success = true;
-                serviceResponse.Message = "Item added successfully.";
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            return _mapper.Map<GetItemDto>(item);
         }
 
-        public async Task<ServiceResponse<List<GetItemDto>>> DeleteItem(int id)
+        public async Task<List<GetItemDto>> DeleteItem(int id)
         {
-            var serviceResponse = new ServiceResponse<List<GetItemDto>>();
-            try
-            {
-                var item = await _context.Items.FindAsync(id);
-                if (item == null)
-                {
-                    serviceResponse.Success = false;
-                    serviceResponse.Message = "Item not found.";
-                    return serviceResponse;
-                }
+            var item = await _context.Items.FindAsync(id);
+            if (item == null)
+                throw new Exception("Item not found.");
 
-                _context.Items.Remove(item);
-                await _context.SaveChangesAsync();
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+            var items = await _context.Items.ToListAsync();
 
-                serviceResponse.Data = _context.Items.Select(i => _mapper.Map<GetItemDto>(i)).ToList();
-                serviceResponse.Success = true;
-                serviceResponse.Message = "Item deleted successfully.";
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            return _mapper.Map<List<GetItemDto>>(items);
         }
 
-        public async Task<ServiceResponse<GetItemDto>> GetItem(int id)
+        public async Task<GetItemDto> GetItem(int id)
         {
-            var serviceResponse = new ServiceResponse<GetItemDto>();
-            try
-            {
-                var item = await _context.Items.FindAsync(id);
-                if (item == null)
-                    throw new Exception("Item not found.");
-                serviceResponse.Data = _mapper.Map<GetItemDto>(item);
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            var item = await _context.Items.FindAsync(id);
+            return _mapper.Map<GetItemDto>(item);
         }
 
-        public async Task<ServiceResponse<List<GetItemDto>>> GetItems()
+        public async Task<List<GetItemDto>> GetItems()
         {
-            var serviceResponse = new ServiceResponse<List<GetItemDto>>();
-            try
-            {
-                var items = await _context.Items.ToListAsync();
-                serviceResponse.Data = items.Select(i => _mapper.Map<GetItemDto>(i)).ToList();
-                serviceResponse.Success = true;
-                serviceResponse.Message = "Items retrieved successfully.";
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            var items = await _context.Items.ToListAsync();
+            return _mapper.Map<List<GetItemDto>>(items);
         }
 
-        public async Task<ServiceResponse<GetItemDto>> UpdateItem(UpdateItemDto updatedItem)
+        public async Task<GetItemDto?> UpdateItem(UpdateItemDto updatedItem)
         {
-            var serviceResponse = new ServiceResponse<GetItemDto>();
-            try
-            {
-                var item = await _context.Items.FindAsync(updatedItem.Id);
-                if (item == null)
-                    throw new Exception("Item not found.");
+            var item = await _context.Items.FindAsync(updatedItem.Id);
+            if (item == null)
+                return null;
 
-                item.Name = updatedItem.Name;
-                item.Supermarket = updatedItem.Supermarket;
-                item.Quantity = updatedItem.Quantity;
-                item.Names = updatedItem.Names;
-                item.Notes = updatedItem.Notes;
-                item.IsPurchased = updatedItem.IsPurchased;
+            var updated_item = _mapper.Map<Item>(updatedItem);
 
-                await _context.SaveChangesAsync();
-
-                serviceResponse.Data = _mapper.Map<GetItemDto>(item);
-                serviceResponse.Success = true;
-                serviceResponse.Message = "Item updated successfully.";
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            await _context.SaveChangesAsync();
+            return _mapper.Map<GetItemDto>(updated_item);
         }
     }
 }

@@ -21,42 +21,38 @@ namespace GroceryManager.API.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<ServiceResponse<List<GetItemDto>>>> GetItems()
+        public async Task<List<GetItemDto>> GetItems()
         {
             var result = await _itemService.GetItems();
-            return Ok(result);
+            return result;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResponse<GetItemDto>>> GetItem(int id)
+        public async Task<GetItemDto> GetItem(int id)
         {
             var result = await _itemService.GetItem(id);
-            return Ok(result);
+            return result;
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<GetItemDto>>> AddItem(AddItemDto newItem)
+        public async Task<GetItemDto> AddItem(AddItemDto newItem)
         {
             var result = await _itemService.AddItem(newItem);
-            return Ok(result);
+            return result;
         }
 
         [HttpPut]
-        public async Task<ActionResult<ServiceResponse<GetItemDto>>> UpdateItem(UpdateItemDto updatedItem)
+        public async Task<GetItemDto?> UpdateItem(UpdateItemDto updatedItem)
         {
             var result = await _itemService.UpdateItem(updatedItem);
-            if (result.Data == null)
-                return NotFound(result);
-            return Ok(result);
+            return result;
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ServiceResponse<List<GetItemDto>>>> DeleteItem(int id)
+        public async Task<List<GetItemDto>> DeleteItem(int id)
         {
             var result = await _itemService.DeleteItem(id);
-            if (result.Data == null)
-                return NotFound(result);
-            return Ok(result);
+            return result;
         }
     }
 }

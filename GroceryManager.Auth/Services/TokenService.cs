@@ -23,39 +23,22 @@ namespace GroceryManager.Auth.Services
             _context = context;
         }
 
-        public async Task<ServiceResponse<string>> Login(string username, string password)
+        public async Task<string> Login(string username, string password)
         {
-            var response = new ServiceResponse<string>();
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username.ToLower().Equals(username.ToLower()));
 
             if (user is null)
-            {
-                response.Success = false;
-                response.Message = "User not found.";
-            }
+                return "User not found.";
             else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            {
-                response.Success = false;
-                response.Message = "Wrong password.";
-            }
+                return "Wrong password.";
             else
-            {
-                response.Data = CreateToken(user);
-            }
-
-            return response;
+                return CreateToken(user);
         }
 
-        public async Task<ServiceResponse<int>> Register(User user, string password)
+        public async Task<string> Register(User user, string password)
         {
-            var response = new ServiceResponse<int>();
-
             if (await UserExists(user.Username))
-            {
-                response.Success = false;
-                response.Message = "User already exists.";
-                return response;
-            }
+                return "User already exists.";
 
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
             user.PasswordHash = passwordHash;
@@ -63,8 +46,7 @@ namespace GroceryManager.Auth.Services
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            response.Data = user.Id;
-            return response;
+            return "User registered successfully.";
         }
 
         public async Task<bool> UserExists(string username)

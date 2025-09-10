@@ -22,87 +22,38 @@ namespace GroceryManager.Services.ShoppingListService
             _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<List<GetShoppingListDto>>> AddShoppingList(AddShoppingListDto newShoppingList)
+        public async Task<List<GetShoppingListDto>> AddShoppingList(AddShoppingListDto newShoppingList)
         {
-            var serviceResponse = new ServiceResponse<List<GetShoppingListDto>>();
-            try
-            {
-                var shoppingList = _mapper.Map<ShoppingList>(newShoppingList);
-                _context.ShoppingLists.Add(shoppingList);
-                await _context.SaveChangesAsync();
+            var shoppingList = _mapper.Map<ShoppingList>(newShoppingList);
+            _context.ShoppingLists.Add(shoppingList);
+            await _context.SaveChangesAsync();
 
-                serviceResponse.Data = _context.ShoppingLists.Select(sl => _mapper.Map<GetShoppingListDto>(sl)).ToList();
-                serviceResponse.Success = true;
-                serviceResponse.Message = "Shopping list added successfully.";
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            var shoppingLists = await _context.ShoppingLists.Include(sl => sl.Items).ToListAsync();
+            return _mapper.Map<List<GetShoppingListDto>>(shoppingLists);
         }
 
-        public async Task<ServiceResponse<GetShoppingListDto>> GetShoppingList(int id)
+        public async Task<GetShoppingListDto> GetShoppingList(int id)
         {
-            var serviceResponse = new ServiceResponse<GetShoppingListDto>();
-            try
-            {
-                var shoppingList = await _context.ShoppingLists.Include(sl => sl.Items).FirstOrDefaultAsync(sl => sl.Id == id);
-                serviceResponse.Data = _mapper.Map<GetShoppingListDto>(shoppingList);
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            var shoppingList = await _context.ShoppingLists.Include(sl => sl.Items).FirstOrDefaultAsync(sl => sl.Id == id);
+            return _mapper.Map<GetShoppingListDto>(shoppingList);
         }
 
-        public async Task<ServiceResponse<List<GetShoppingListDto>>> GetShoppingLists()
+        public async Task<List<GetShoppingListDto>> GetShoppingLists()
         {
-            var serviceResponse = new ServiceResponse<List<GetShoppingListDto>>();
-            try
-            {
-                var shoppingLists = await _context.ShoppingLists.Include(sl => sl.Items).ToListAsync();
-                serviceResponse.Data = shoppingLists.Select(sl => _mapper.Map<GetShoppingListDto>(sl)).ToList();
-                serviceResponse.Success = true;
-                serviceResponse.Message = "Shopping lists retrieved successfully.";
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            var shoppingLists = await _context.ShoppingLists.Include(sl => sl.Items).ToListAsync();
+            return _mapper.Map<List<GetShoppingListDto>>(shoppingLists);
         }
 
-        public async Task<ServiceResponse<GetShoppingListDto>> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList)
+        public async Task<GetShoppingListDto?> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList)
         {
-            var serviceResponse = new ServiceResponse<GetShoppingListDto>();
-            try
-            {
-                var shoppingList = await _context.ShoppingLists.FindAsync(updatedShoppingList.Id);
-                if (shoppingList == null)
-                {
-                    serviceResponse.Success = false;
-                    serviceResponse.Message = "Shopping list not found.";
-                    return serviceResponse;
-                }
+            var shoppingList = await _context.ShoppingLists.Include(sl => sl.Items).FirstOrDefaultAsync(sl => sl.Id == updatedShoppingList.Id);
+            if (shoppingList == null)
+                return null;
 
-                shoppingList.IsPurchased = updatedShoppingList.IsPurchased;
-                await _context.SaveChangesAsync();
+            _mapper.Map(updatedShoppingList, shoppingList);
+            await _context.SaveChangesAsync();
 
-                serviceResponse.Data = _mapper.Map<GetShoppingListDto>(shoppingList);
-                serviceResponse.Success = true;
-                serviceResponse.Message = "Shopping list updated successfully.";
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
+            return _mapper.Map<GetShoppingListDto>(shoppingList);
         }
     }
 }

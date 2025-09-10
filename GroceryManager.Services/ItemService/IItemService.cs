@@ -9,10 +9,10 @@ namespace GroceryManager.Services.ItemService
 {
     public interface IItemService
     {
-        Task<ServiceResponse<List<GetItemDto>>> GetItems();
-        Task<ServiceResponse<GetItemDto>> GetItem(int id);
-        Task<ServiceResponse<GetItemDto>> AddItem(AddItemDto newItem);
-        Task<ServiceResponse<GetItemDto>> UpdateItem(UpdateItemDto updatedItem);
-        Task<ServiceResponse<List<GetItemDto>>> DeleteItem(int id);
+        Task<List<GetItemDto>> GetItems();
+        Task<GetItemDto> GetItem(int id);
+        Task<GetItemDto> AddItem(AddItemDto newItem);
+        Task<GetItemDto?> UpdateItem(UpdateItemDto updatedItem);
+        Task<List<GetItemDto>> DeleteItem(int id);
     }
 }

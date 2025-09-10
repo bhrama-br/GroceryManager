@@ -9,12 +9,12 @@ namespace GroceryManager.Services.ShoppingListService
 {
     public interface IShoppingListService
     {
-        Task<ServiceResponse<List<GetShoppingListDto>>> GetShoppingLists();
+        Task<List<GetShoppingListDto>> GetShoppingLists();
 
-        Task<ServiceResponse<List<GetShoppingListDto>>> AddShoppingList(AddShoppingListDto newShoppingList);
+        Task<List<GetShoppingListDto>> AddShoppingList(AddShoppingListDto newShoppingList);
 
-        Task<ServiceResponse<GetShoppingListDto>> GetShoppingList(int id);
+        Task<GetShoppingListDto> GetShoppingList(int id);
 
-        Task<ServiceResponse<GetShoppingListDto>> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList);
+        Task<GetShoppingListDto?> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList);
     }
 }

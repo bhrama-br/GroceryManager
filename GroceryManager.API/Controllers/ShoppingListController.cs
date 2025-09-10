@@ -21,33 +21,31 @@ namespace GroceryManager.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<GetShoppingListDto>>>> GetShoppingLists()
+        public async Task<List<GetShoppingListDto>> GetShoppingLists()
         {
             var result = await _shoppingListService.GetShoppingLists();
-            return Ok(result);
+            return result;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResponse<GetShoppingListDto>>> GetShoppingList(int id)
+        public async Task<GetShoppingListDto> GetShoppingList(int id)
         {
             var result = await _shoppingListService.GetShoppingList(id);
-            return Ok(result);
+            return result;
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<GetShoppingListDto>>>> AddShoppingList(AddShoppingListDto newShoppingList)
+        public async Task<List<GetShoppingListDto>> AddShoppingList(AddShoppingListDto newShoppingList)
         {
             var result = await _shoppingListService.AddShoppingList(newShoppingList);
-            return Ok(result);
+            return result;
         }
 
         [HttpPut]
-        public async Task<ActionResult<ServiceResponse<GetShoppingListDto>>> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList)
+        public async Task<GetShoppingListDto?> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList)
         {
             var result = await _shoppingListService.UpdateShoppingList(updatedShoppingList);
-            if (result.Data == null)
-                return NotFound(result);
-            return Ok(result);
+            return result;
         }
     }
 }

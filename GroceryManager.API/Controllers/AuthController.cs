@@ -17,33 +17,25 @@ namespace GroceryManager.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login([FromBody] UserLoginDto request)
+        public async Task<string> Login([FromBody] UserLoginDto request)
         {
             var response = await _tokenService.Login(
                 request.Username,
                 request.Password
             );
 
-            if (!response.Success)
-            {
-                return BadRequest(response);
-            }
-            return Ok(response);
+            return response;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(UserRegisterDto request)
+        public async Task<string> Register(UserRegisterDto request)
         {
             var response = await _tokenService.Register(
                 new User { Username = request.Username },
                 request.Password
             );
 
-            if (!response.Success)
-            {
-                return BadRequest(response);
-            }
-            return Ok(response);
+            return response;
         }
     }
 }
