@@ -8,7 +8,7 @@ using GroceryManager.Database.Entities;
 using GroceryManager.Models.Dtos.ShoppingList;
 using Microsoft.EntityFrameworkCore;
 
-namespace GroceryManager.Services.ShoppingListService
+namespace GroceryManager.Services.ShoppingLists
 {
     public interface IShoppingListService
     {

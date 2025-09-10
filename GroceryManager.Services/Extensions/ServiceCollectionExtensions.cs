@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using GroceryManager.Auth.Services;
 using System.Text;
 using GroceryManager.Auth.Models;
 using GroceryManager.Configurations;
+using FluentValidation;
 
 namespace GroceryManager.Services.Extensions
 {
@@ -37,6 +38,7 @@ namespace GroceryManager.Services.Extensions
 
       services.AddSwaggerConfiguration();
       services.AddAutoMapper(Assembly.GetExecutingAssembly());
+      services.AddValidatorsFromAssembly(typeof(ServiceCollectionExtensions).Assembly);
 
 
       // JWT Settings
@@ -59,8 +61,6 @@ namespace GroceryManager.Services.Extensions
             ValidateAudience = false
           };
         });
-
-      services.AddScoped<ITokenService, TokenService>();
 
       return services;
     }

@@ -1,7 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using GroceryManager.Auth.Services;
 using GroceryManager.Auth.Models;
 using GroceryManager.Database.Entities;
 using Microsoft.Extensions.Options;
@@ -9,50 +8,77 @@ using Microsoft.IdentityModel.Tokens;
 using GroceryManager.Database;
 using GroceryManager.Models;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using GroceryManager.Models.Dtos.User;
+using AutoMapper;
 
-namespace GroceryManager.Auth.Services
+namespace GroceryManager.Services.Users
 {
-    public interface ITokenService
+    public interface IAuthService
     {
-        Task<string> Register(User user, string password);
-        Task<string> Login(string username, string password);
+        Task<string> Register(UserRegisterDto dto, CancellationToken cancellationToken);
+        Task<string> Login(UserLoginDto loginDto, CancellationToken cancellationToken);
         Task<bool> UserExists(string username);
     }
 
-    public class TokenService : ITokenService
+    public class AuthService : IAuthService
     {
         private readonly JwtSettings _jwtSettings;
+        private readonly IMapper _mapper;
         private readonly DataContext _context;
+        private readonly IValidator<UserLoginDto> _loginValidator;
+        private readonly IValidator<UserRegisterDto> _registerValidator;
 
-        public TokenService(DataContext context, IOptions<JwtSettings> jwtSettings)
+        public AuthService(
+            DataContext context,
+            IMapper mapper,
+            IOptions<JwtSettings> jwtSettings,
+            IValidator<UserLoginDto> loginValidator,
+            IValidator<UserRegisterDto> registerValidator)
         {
             _jwtSettings = jwtSettings.Value;
             _context = context;
+            _mapper = mapper;
+            _loginValidator = loginValidator;
+            _registerValidator = registerValidator;
         }
 
-        public async Task<string> Login(string username, string password)
+        public async Task<string> Login(UserLoginDto loginDto, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username.ToLower().Equals(username.ToLower()));
+            var validation = await _loginValidator.ValidateAsync(loginDto, cancellationToken);
+            if (!validation.IsValid)
+                return string.Join("; ", validation.Errors.Select(e => e.ErrorMessage));
+
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Username.ToLower() == loginDto.Username.ToLower(), cancellationToken);
 
             if (user is null)
                 return "User not found.";
-            else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+
+            if (!VerifyPasswordHash(loginDto.Password, user.PasswordHash, user.PasswordSalt))
                 return "Wrong password.";
-            else
-                return CreateToken(user);
+
+            return CreateToken(user);
         }
 
-        public async Task<string> Register(User user, string password)
+        public async Task<string> Register(UserRegisterDto dto, CancellationToken cancellationToken)
         {
-            if (await UserExists(user.Username))
+            var validation = await _registerValidator.ValidateAsync(dto, cancellationToken);
+            if (!validation.IsValid)
+                return string.Join("; ", validation.Errors.Select(e => e.ErrorMessage));
+
+            if (await _context.Users.AnyAsync(u => u.Username == dto.Username, cancellationToken))
                 return "User already exists.";
 
-            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            CreatePasswordHash(dto.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            var user = _mapper.Map<User>(dto);
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
             _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
+
             return "User registered successfully.";
         }
 

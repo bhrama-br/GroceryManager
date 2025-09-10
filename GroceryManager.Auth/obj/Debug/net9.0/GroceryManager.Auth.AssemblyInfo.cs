@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GroceryManager.Auth")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55a530cfba5ae044b2ff4f4ac4841b1db16f114c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+258b055446bda891144a8dd8de591b9d73243ee3")]
 [assembly: System.Reflection.AssemblyProductAttribute("GroceryManager.Auth")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GroceryManager.Auth")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

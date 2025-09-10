@@ -8,7 +8,7 @@ using GroceryManager.Database.Entities;
 using GroceryManager.Models.Dtos.Item;
 using Microsoft.EntityFrameworkCore;
 
-namespace GroceryManager.Services.ItemService
+namespace GroceryManager.Services.Items
 {
     public interface IItemService
     {

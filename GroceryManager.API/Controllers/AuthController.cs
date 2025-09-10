@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using GroceryManager.Auth.Services;
 using GroceryManager.Database.Entities;
 using GroceryManager.Models.Dtos.User;
 
@@ -9,33 +8,23 @@ namespace GroceryManager.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly ITokenService _tokenService;
+        private readonly IAuthService _authService;
 
-        public AuthController(ITokenService tokenService)
+        public AuthController(IAuthService authService)
         {
-            _tokenService = tokenService;
+            _authService = authService;
         }
 
         [HttpPost("login")]
-        public async Task<string> Login([FromBody] UserLoginDto request)
+        public async Task<string> Login([FromBody] UserLoginDto user, CancellationToken cancellationToken)
         {
-            var response = await _tokenService.Login(
-                request.Username,
-                request.Password
-            );
-
-            return response;
+            return await _authService.Login(user, cancellationToken);
         }
 
         [HttpPost("register")]
-        public async Task<string> Register(UserRegisterDto request)
+        public async Task<string> Register([FromBody] UserRegisterDto user, CancellationToken cancellationToken)
         {
-            var response = await _tokenService.Register(
-                new User { Username = request.Username },
-                request.Password
-            );
-
-            return response;
+            return await _authService.Register(user, cancellationToken);
         }
     }
 }

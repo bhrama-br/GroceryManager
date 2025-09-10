@@ -2,7 +2,7 @@ using AutoMapper;
 using GroceryManager.Database.Entities;
 using GroceryManager.Models.Dtos.Item;
 
-namespace GroceryManager.Services.Mapping
+namespace GroceryManager.Services.Items.Mapper
 {
     public class ItemProfile : Profile
     {
