@@ -22,36 +22,38 @@ namespace GroceryManager.Services.ShoppingListService
             _mapper = mapper;
         }
 
-        public async Task<List<GetShoppingListDto>> AddShoppingList(AddShoppingListDto newShoppingList)
+        public async Task<List<GetShoppingListDto>> AddShoppingList(AddShoppingListDto newShoppingList, CancellationToken cancellationToken)
         {
             var shoppingList = _mapper.Map<ShoppingList>(newShoppingList);
             _context.ShoppingLists.Add(shoppingList);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
 
-            var shoppingLists = await _context.ShoppingLists.Include(sl => sl.Items).ToListAsync();
+            var shoppingLists = await _context.ShoppingLists.Include(sl => sl.Items).ToListAsync(cancellationToken);
             return _mapper.Map<List<GetShoppingListDto>>(shoppingLists);
         }
 
-        public async Task<GetShoppingListDto> GetShoppingList(int id)
+        public async Task<GetShoppingListDto> GetShoppingList(int id, CancellationToken cancellationToken)
         {
-            var shoppingList = await _context.ShoppingLists.Include(sl => sl.Items).FirstOrDefaultAsync(sl => sl.Id == id);
+            var shoppingList = await _context.ShoppingLists.Include(sl => sl.Items).FirstOrDefaultAsync(sl => sl.Id == id, cancellationToken);
             return _mapper.Map<GetShoppingListDto>(shoppingList);
         }
 
-        public async Task<List<GetShoppingListDto>> GetShoppingLists()
+        public async Task<List<GetShoppingListDto>> GetShoppingLists(CancellationToken cancellationToken)
         {
-            var shoppingLists = await _context.ShoppingLists.Include(sl => sl.Items).ToListAsync();
+            var shoppingLists = await _context.ShoppingLists.Include(sl => sl.Items).ToListAsync(cancellationToken);
             return _mapper.Map<List<GetShoppingListDto>>(shoppingLists);
         }
 
-        public async Task<GetShoppingListDto?> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList)
+        public async Task<GetShoppingListDto?> UpdateShoppingList(UpdateShoppingListDto updatedShoppingList, CancellationToken cancellationToken)
         {
-            var shoppingList = await _context.ShoppingLists.Include(sl => sl.Items).FirstOrDefaultAsync(sl => sl.Id == updatedShoppingList.Id);
+            var shoppingList = await _context.ShoppingLists
+                .Include(sl => sl.Items)
+                .FirstOrDefaultAsync(sl => sl.Id == updatedShoppingList.Id, cancellationToken);
             if (shoppingList == null)
                 return null;
 
             _mapper.Map(updatedShoppingList, shoppingList);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
 
             return _mapper.Map<GetShoppingListDto>(shoppingList);
         }

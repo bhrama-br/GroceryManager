@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GroceryManager.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03ddc2aea64facffd6ad447b76b32d353b8af0ed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f65167be23678aa5b705f6b873b1b95086d2190a")]
 [assembly: System.Reflection.AssemblyProductAttribute("GroceryManager.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GroceryManager.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

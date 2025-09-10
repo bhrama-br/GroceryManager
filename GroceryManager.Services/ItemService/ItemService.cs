@@ -21,10 +21,10 @@ namespace GroceryManager.Services.ItemService
             _context = context;
             _mapper = mapper;
         }
-        public async Task<GetItemDto> AddItem(AddItemDto newItem)
+        public async Task<GetItemDto> AddItem(AddItemDto newItem, CancellationToken cancellationToken)
         {
             var shoppingList = await _context.ShoppingLists
-                .FirstOrDefaultAsync(sl => sl.Id == newItem.ShoppingListId);
+                .FirstOrDefaultAsync(sl => sl.Id == newItem.ShoppingListId, cancellationToken);
             if (shoppingList is null)
                 throw new Exception("Shopping list not found.");
 
@@ -32,45 +32,45 @@ namespace GroceryManager.Services.ItemService
             item.ShoppingList = shoppingList;
 
             _context.Items.Add(item);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
 
             return _mapper.Map<GetItemDto>(item);
         }
 
-        public async Task<List<GetItemDto>> DeleteItem(int id)
+        public async Task<List<GetItemDto>> DeleteItem(int id, CancellationToken cancellationToken)
         {
-            var item = await _context.Items.FindAsync(id);
+            var item = await _context.Items.FindAsync(id, cancellationToken);
             if (item == null)
                 throw new Exception("Item not found.");
 
             _context.Items.Remove(item);
-            await _context.SaveChangesAsync();
-            var items = await _context.Items.ToListAsync();
+            await _context.SaveChangesAsync(cancellationToken);
+            var items = await _context.Items.ToListAsync(cancellationToken);
 
             return _mapper.Map<List<GetItemDto>>(items);
         }
 
-        public async Task<GetItemDto> GetItem(int id)
+        public async Task<GetItemDto> GetItem(int id, CancellationToken cancellationToken)
         {
-            var item = await _context.Items.FindAsync(id);
+            var item = await _context.Items.FindAsync(id, cancellationToken);
             return _mapper.Map<GetItemDto>(item);
         }
 
-        public async Task<List<GetItemDto>> GetItems()
+        public async Task<List<GetItemDto>> GetItems(CancellationToken cancellationToken)
         {
-            var items = await _context.Items.ToListAsync();
+            var items = await _context.Items.ToListAsync(cancellationToken);
             return _mapper.Map<List<GetItemDto>>(items);
         }
 
-        public async Task<GetItemDto?> UpdateItem(UpdateItemDto updatedItem)
+        public async Task<GetItemDto?> UpdateItem(UpdateItemDto updatedItem, CancellationToken cancellationToken)
         {
-            var item = await _context.Items.FindAsync(updatedItem.Id);
+            var item = await _context.Items.FindAsync(updatedItem.Id, cancellationToken);
             if (item == null)
                 return null;
 
             var updated_item = _mapper.Map<Item>(updatedItem);
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return _mapper.Map<GetItemDto>(updated_item);
         }
     }
