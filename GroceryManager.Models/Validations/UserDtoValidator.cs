@@ -1,5 +1,6 @@
 using FluentValidation;
-using GroceryManager.Models.Dtos;
+using GroceryManager.Models.Dtos.User;
+
 
 namespace GroceryManager.Models.Validations;
 
