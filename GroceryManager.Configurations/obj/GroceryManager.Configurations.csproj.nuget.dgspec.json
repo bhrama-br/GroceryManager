@@ -271,7 +271,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/GroceryManager.Database.csproj": {
+                "projectPath": "/Users/bramante/Documents/Development/GroceryManager/GroceryManager.Database/GroceryManager.Database.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

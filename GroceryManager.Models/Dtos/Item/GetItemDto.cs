@@ -9,7 +9,6 @@ namespace GroceryManager.Models.Dtos.Item
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Supermarket { get; set; } = string.Empty;
         public int Quantity { get; set; }
         public List<string>? Names { get; set; }
         public string Notes { get; set; } = string.Empty;

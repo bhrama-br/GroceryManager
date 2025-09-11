@@ -1238,7 +1238,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "FluentValidation": "8.2.3"
+          "FluentValidation": "8.2.3",
+          "GroceryManager.Database": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GroceryManager.Models.dll": {}

@@ -54,13 +54,14 @@ namespace GroceryManager.Database.Migrations.Migrations
                     b.Property<int?>("ShoppingListId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Supermarket")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SupermarketId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ShoppingListId");
+
+                    b.HasIndex("SupermarketId");
 
                     b.ToTable("Items");
                 });
@@ -84,6 +85,23 @@ namespace GroceryManager.Database.Migrations.Migrations
                     b.ToTable("ShoppingLists");
                 });
 
+            modelBuilder.Entity("GroceryManager.Database.Entities.Supermarket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Supermarkets");
+                });
+
             modelBuilder.Entity("GroceryManager.Database.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -93,14 +111,11 @@ namespace GroceryManager.Database.Migrations.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
@@ -112,8 +127,7 @@ namespace GroceryManager.Database.Migrations.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -126,10 +140,23 @@ namespace GroceryManager.Database.Migrations.Migrations
                         .WithMany("Items")
                         .HasForeignKey("ShoppingListId");
 
+                    b.HasOne("GroceryManager.Database.Entities.Supermarket", "Supermarket")
+                        .WithMany("Items")
+                        .HasForeignKey("SupermarketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ShoppingList");
+
+                    b.Navigation("Supermarket");
                 });
 
             modelBuilder.Entity("GroceryManager.Database.Entities.ShoppingList", b =>
+                {
+                    b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("GroceryManager.Database.Entities.Supermarket", b =>
                 {
                     b.Navigation("Items");
                 });

@@ -10,6 +10,10 @@ using System.Text;
 using GroceryManager.Auth.Models;
 using GroceryManager.Configurations;
 using FluentValidation;
+using GroceryManager.Services.ShoppingLists;
+using GroceryManager.Services.Items;
+using GroceryManager.Services.Users;
+using GroceryManager.Services.Supermarkets;
 
 namespace GroceryManager.Services.Extensions
 {
@@ -40,6 +44,11 @@ namespace GroceryManager.Services.Extensions
       services.AddAutoMapper(Assembly.GetExecutingAssembly());
       services.AddValidatorsFromAssembly(typeof(ServiceCollectionExtensions).Assembly);
 
+
+      services.AddScoped<IShoppingListService, ShoppingListService>();
+      services.AddScoped<IItemService, ItemService>();
+      services.AddScoped<IAuthService, AuthService>();
+      services.AddScoped<ISupermarketService, SupermarketService>();
 
       // JWT Settings
       services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));

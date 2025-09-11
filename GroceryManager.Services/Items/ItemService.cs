@@ -36,8 +36,14 @@ namespace GroceryManager.Services.Items
             if (shoppingList is null)
                 throw new Exception("Shopping list not found.");
 
+            var supermarket = await _context.Supermarkets
+                .FirstOrDefaultAsync(sm => sm.Id == newItem.SupermarketId, cancellationToken);
+            if (supermarket is null)
+                throw new Exception("Supermarket not found.");
+
             var item = _mapper.Map<Item>(newItem);
             item.ShoppingList = shoppingList;
+            item.Supermarket = supermarket;
 
             _context.Items.Add(item);
             await _context.SaveChangesAsync(cancellationToken);
