@@ -14,7 +14,7 @@ namespace GroceryManager.Database.Entities
         public string Notes { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public bool IsPurchased { get; set; } = false;
-        public Supermarket Supermarket { get; set; }
+        public Supermarket? Supermarket { get; set; }
         public ShoppingList? ShoppingList { get; set; }
     }
 }
