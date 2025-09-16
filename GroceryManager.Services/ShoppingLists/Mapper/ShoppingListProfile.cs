@@ -9,6 +9,7 @@ namespace GroceryManager.Services.ShoppingLists.Mapper
         public ShoppingListProfile()
         {
             CreateMap<ShoppingList, GetShoppingListDto>();
+            CreateMap<AddShoppingListDto, ShoppingList>();
             CreateMap<UpdateShoppingListDto, ShoppingList>();
         }
     }

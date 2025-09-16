@@ -1,8 +1,7 @@
 using GroceryManager.Database;
-using Microsoft.EntityFrameworkCore;
+using GroceryManager.Database.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
-using System.Reflection.PortableExecutable;
 
 namespace GroceryManager.Test
 {
@@ -16,18 +15,28 @@ namespace GroceryManager.Test
         {
             TestServer = new TestServer();
             Client = TestServer.CreateClient();
+            SetAuthentication();
 
-            var scopeFactory = TestServer.Services.GetService<IServiceScopeFactory>();
-            if (scopeFactory is null)
+            var scopeFactory = TestServer.Services.GetRequiredService<IServiceScopeFactory>();
+            var scope = scopeFactory.CreateScope();
+
+            DbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+
+            // opcional: limpa a BD antes de cada execução
+            DbContext.Database.EnsureDeleted();
+            DbContext.Database.EnsureCreated();
+
+
+            if (!DbContext.ShoppingLists.Any())
             {
-                throw new Exception("ScopeFactory is null");
+                DbContext.ShoppingLists.Add(new ShoppingList { Id = 1, IsPurchased = false, CreatedAt = DateTime.Now });
+                DbContext.SaveChanges();
             }
 
-            var scope = scopeFactory.CreateScope();
-            DbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-            if (scopeFactory is null)
+            if (!DbContext.Supermarkets.Any())
             {
-                throw new Exception("ScopeFactory is null");
+                DbContext.Supermarkets.Add(new Supermarket { Id = 1, Name = "Supermarket 1" });
+                DbContext.SaveChanges();
             }
         }
 
@@ -35,6 +44,14 @@ namespace GroceryManager.Test
         {
             Client.Dispose();
             TestServer.Dispose();
+            DbContext.Database.EnsureDeleted();
+            DbContext.Database.EnsureCreated();
+        }
+
+        private void SetAuthentication()
+        {
+            var claims = new Dictionary<string, object>();
+            Client.SetFakeBearerToken(claims);
         }
     }
 }

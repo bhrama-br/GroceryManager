@@ -7,10 +7,10 @@ public class DataContext : DbContext
 {
   public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-  public DbSet<User> Users { get; set; }
-  public DbSet<ShoppingList> ShoppingLists { get; set; }
-  public DbSet<Item> Items { get; set; }
-  public DbSet<Supermarket> Supermarkets { get; set; }
+  public virtual DbSet<User> Users { get; set; }
+  public virtual DbSet<ShoppingList> ShoppingLists { get; set; }
+  public virtual DbSet<Item> Items { get; set; }
+  public virtual DbSet<Supermarket> Supermarkets { get; set; }
 
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,14 +1,26 @@
-global using GroceryManager.Models;
+
+
 global using GroceryManager.Services.ShoppingLists;
 global using GroceryManager.Services.Items;
 global using GroceryManager.Services.Users;
 global using GroceryManager.Services.Supermarkets;
 using GroceryManager.Services.Extensions;
+using GroceryManager.Database;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add configurations to project
 builder.Services.AddGroceryConfigurations(builder.Configuration);
+
+// Register DbContext conditionally
+if (!builder.Environment.IsEnvironment("Test"))
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<DataContext>(options =>
+        options.UseNpgsql(connectionString,
+            b => b.MigrationsAssembly(typeof(DatabaseMigrations).Assembly.GetName().Name)));
+}
 
 
 var app = builder.Build();
@@ -23,3 +35,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+
+public partial class Program { }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GroceryManager.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ItemController : ControllerBase
     {
         private readonly IItemService _itemService;
@@ -20,7 +20,7 @@ namespace GroceryManager.API.Controllers
         }
 
         [Authorize]
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<List<GetItemDto>> GetItems(CancellationToken cancellationToken)
         {
             var result = await _itemService.GetItems(cancellationToken);

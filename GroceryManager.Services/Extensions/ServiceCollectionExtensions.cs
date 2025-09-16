@@ -34,10 +34,10 @@ namespace GroceryManager.Services.Extensions
       // Swagger
       services.AddEndpointsApiExplorer();
 
-      // DbContext (PostgreSQL)
-      services.AddDbContext<DataContext>(options =>
-          options.UseNpgsql(connectionString,
-            b => b.MigrationsAssembly("GroceryManager.Database.Migrations")));
+
+      services.AddTransient<DatabaseMigrations>();
+
+
 
 
       services.AddSwaggerConfiguration();
