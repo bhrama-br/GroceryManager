@@ -19,7 +19,7 @@ if (!builder.Environment.IsEnvironment("Test"))
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Services.AddDbContext<DataContext>(options =>
         options.UseNpgsql(connectionString,
-            b => b.MigrationsAssembly(typeof(DatabaseMigrations).Assembly.GetName().Name)));
+            b => b.MigrationsAssembly("GroceryManager.Database.Migrations")));
 }
 
 

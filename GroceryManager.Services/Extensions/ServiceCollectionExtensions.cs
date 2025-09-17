@@ -14,6 +14,7 @@ using GroceryManager.Services.ShoppingLists;
 using GroceryManager.Services.Items;
 using GroceryManager.Services.Users;
 using GroceryManager.Services.Supermarkets;
+using GroceryManager.Services.Revenues;
 
 namespace GroceryManager.Services.Extensions
 {
@@ -49,6 +50,11 @@ namespace GroceryManager.Services.Extensions
       services.AddScoped<IItemService, ItemService>();
       services.AddScoped<IAuthService, AuthService>();
       services.AddScoped<ISupermarketService, SupermarketService>();
+
+      services.AddScoped<IRevenuesService, RevenuesService>();
+      services.AddHostedService<RevenueSyncBackgroundService>();
+      services.AddHttpClient<IRevenuesService, RevenuesService>();
+
 
       // JWT Settings
       services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));

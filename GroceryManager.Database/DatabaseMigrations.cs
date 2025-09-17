@@ -27,14 +27,14 @@ namespace GroceryManager.Database
                 Logger.Information("Starting database migration...");
                 _context.Database.SetCommandTimeout(10000); // Set the timeout to 2 minutes
 
-                //using (var transaction = _context.Database.BeginTransaction())
-                //{
-                _context.Database.Migrate();
+                using (var transaction = _context.Database.BeginTransaction())
+                {
+                    _context.Database.Migrate();
 
-                _context.Database.SetCommandTimeout(previousTimeout); // Revert the timeout back to the original value
+                    _context.Database.SetCommandTimeout(previousTimeout); // Revert the timeout back to the original value
 
-                //transaction.Commit();
-                //}
+                    transaction.Commit();
+                }
             }
             catch (Exception ex)
             {

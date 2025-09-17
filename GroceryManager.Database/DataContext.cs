@@ -11,7 +11,7 @@ public class DataContext : DbContext
   public virtual DbSet<ShoppingList> ShoppingLists { get; set; }
   public virtual DbSet<Item> Items { get; set; }
   public virtual DbSet<Supermarket> Supermarkets { get; set; }
-
+  public virtual DbSet<Revenue> Revenues { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
