@@ -17,8 +17,7 @@ namespace GroceryManager.Services.Revenues.Mapper
                 .ForMember(dest => dest.IngredientNames, opt => opt.MapFrom(
                     src => src.IngredientesBase.SelectMany(x => x.NomesIngrediente).Distinct().ToList()
                 ));
-
-            CreateMap<AddRevenuesDto, Revenue>();
+            CreateMap<Revenue, GetRevenuesDto>();
             CreateMap<GetRevenuesDto, Revenue>();
         }
 

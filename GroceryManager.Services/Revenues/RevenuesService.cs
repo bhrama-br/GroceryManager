@@ -5,25 +5,32 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using GroceryManager.Database;
 using GroceryManager.Database.Entities;
 using GroceryManager.Models.Dtos.Revenue;
+using Microsoft.EntityFrameworkCore;
 
 namespace GroceryManager.Services.Revenues
 {
     public interface IRevenuesService
     {
         Task<List<GetRevenuesDto>> GetAllRevenuesApiAsync();
+
+        Task<List<GetRevenuesDto>> GetAllRevenuesDbAsync();
+        Task<List<GetRevenuesDto>?> GetRevenuesByNameAsync(string name);
     }
 
     public class RevenuesService : IRevenuesService
     {
         private readonly HttpClient _httpClient;
         private readonly IMapper _mapper;
+        private readonly DataContext _context;
 
-        public RevenuesService(HttpClient httpClient, IMapper mapper)
+        public RevenuesService(HttpClient httpClient, IMapper mapper, DataContext context)
         {
             _httpClient = httpClient;
             _mapper = mapper;
+            _context = context;
         }
 
         public async Task<List<GetRevenuesDto>> GetAllRevenuesApiAsync()
@@ -58,5 +65,21 @@ namespace GroceryManager.Services.Revenues
 
             return allRevenues;
         }
-    }
+
+        public async Task<List<GetRevenuesDto>> GetAllRevenuesDbAsync()
+        {
+            var revenues = await _context.Revenues.ToListAsync();
+
+            return _mapper.Map<List<GetRevenuesDto>>(revenues);
+        }
+
+        public async Task<List<GetRevenuesDto>?> GetRevenuesByNameAsync(string name)
+        {
+            var revenues = await _context.Revenues
+                .Where(r => EF.Functions.ILike(r.Name, $"%{name}%"))
+                .ToListAsync();
+
+            return _mapper.Map<List<GetRevenuesDto>?>(revenues);
+        }
+  }
 }
